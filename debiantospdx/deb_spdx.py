@@ -21,8 +21,11 @@ class Deb_Spdx:
     first_mode: int
     rest_mode: int
     trail_list: list[str]  # [p_name]
-    treated_list = []
-    doc_comment = ""
+    treated_list: list[str] = []
+    doc_comment = """<text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>"""
 
     def return_spdx(self):
         return self.tv_dict
@@ -101,8 +104,7 @@ class Deb_Spdx:
         doc_dict["ExternalDocumentRef"] = []
         doc_dict["Relationship"] = [doc_dict["SPDXID"][0] + " DESCRIBES " + package_dict["SPDXID"][0]]
 
-        # 保留
-        # doc_dict["DocumentComment"] = ["文章"]
+        doc_dict["DocumentComment"] = [self.doc_comment]
 
         # ファイルパス と SPDXID の修正 と Relationship の追加
         for i, file_dict in enumerate(tv_dict["File"]):
@@ -133,7 +135,7 @@ class Deb_Spdx:
             or_list = dp.split(" | ")
             ori_list = []
             for d in or_list:
-                ori_list.append([i for i in re.split(" |\(|\)|\[.*?\]|:any", d) if i])
+                ori_list.append([i for i in re.split(" |\\(|\\)|\\[.*?\\]|:any", d) if i])
             dori_list.append(ori_list)
 
         for ori_list in dori_list:

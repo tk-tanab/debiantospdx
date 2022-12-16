@@ -8,4 +8,4 @@ from .joblib_sigma import joblib_sigma
 __all__ = ["for_sigma", "joblib_sigma"]
 
 # pyproject.tomlと合わせる
-__version__ = "0.1.8"
+__version__ = "0.1.0"

@@ -1,9 +1,10 @@
-import os
-import subprocess
-import shutil
-import tv_to_dict
 import hashlib
+import os
+import shutil
+import subprocess
 from datetime import datetime
+
+import tv_to_dict
 
 
 def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bool):
@@ -20,7 +21,7 @@ def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bo
     """
     hash_list = []
     file_dict_list = []
-    copyright_filepath = None
+    copyright_filepath = ""
 
     for value in file_list:
         if os.path.isfile(value):
@@ -50,7 +51,7 @@ def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bo
                 pass
     else:
         hash_list.sort()
-        if copyright_filepath is None:
+        if copyright_filepath == "":
             scan_copyrightfile = False
 
     tv_dict = scancode(scan_copyrightfile, package_name)
@@ -60,7 +61,7 @@ def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bo
     tv_dict["File"] += file_dict_list
 
     if scan_copyrightfile:
-        tv_dict["File"][0].update({"FileName": [copyright_filepath]})
+        tv_dict["File"][0]["FileName"] = [copyright_filepath]
         tv_dict["File"][0]["LicenseInfoInFile"] = list(set(tv_dict["File"][0]["LicenseInfoInFile"]))
 
     return tv_dict
@@ -149,6 +150,8 @@ def make_tv_dict(package_name, mode):
 
     # パッケージを構成するファイルの一覧を取得
     file_list = subprocess.run(["dpkg", "-L", package_name], capture_output=True, text=True).stdout.splitlines()
+
+    tv_dict = {}
 
     # 1: ファイル解析はするが、ライセンスは解析しない
     if mode == 1 or file_list == []:

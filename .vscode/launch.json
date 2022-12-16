@@ -8,7 +8,7 @@
             "name": "test_args",
             "type": "python",
             "request": "launch",
-            "program": "template/__main__.py",
+            "program": "debiantospdx/__main__.py",
             "cwd": "${workspaceFolder}", // デバッグでもテストでもここを参照する
             "console": "integratedTerminal",
             "justMyCode": true,

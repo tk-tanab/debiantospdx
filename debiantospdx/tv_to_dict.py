@@ -44,6 +44,8 @@ def tv_to_dict(spdx_tv: str) -> dict[str, list[dict[str, list[str]]]]:
         lines_iter = iter(lines_strip)
 
     spdx_dict: dict[str, list[dict[str, list[str]]]] = {}
+    new_elem_dict: dict[str, list[str]] = {}
+    info_name: str = ""
 
     for line in lines_iter:
         # infomationは新たな要素の書き出し

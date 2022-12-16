@@ -35,7 +35,7 @@ def make_pv_vrp_dict(pv_dict: dict[str, str], vrp_dict: dict[str, list[list[str]
 
     # 重複削除
     for key, value in vrp_dict.items():
-        vrp_dict[key] = list(map(list, set(map(tuple, value))))
+        vrp_dict[key] = [list(j) for j in list(set([tuple(i) for i in value]))]
 
 
 def add_vrp_dict(vrp_names: str, p_name: str, vrp_dict: dict[str, list[list[str]]]):
@@ -50,7 +50,7 @@ def add_vrp_dict(vrp_names: str, p_name: str, vrp_dict: dict[str, list[list[str]
     vrp_name_list = vrp_names.split(", ")
     for vrp_name in vrp_name_list:
         # vrp_name_split: [Virtual or Replace Package, (比較演算子, Version)]
-        vrp_name_split = [i for i in re.split(" |\(|\)|\[.*?\]", vrp_name) if i]
+        vrp_name_split = [i for i in re.split(" |\\(|\\)|\\[.*?\\]", vrp_name) if i]
 
         if vrp_name_split[0] in vrp_dict:
             vrp_dict[vrp_name_split[0]].append([p_name] + vrp_name_split[1:])

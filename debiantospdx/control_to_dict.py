@@ -70,7 +70,7 @@ def control_to_dict(control_text: str) -> dict[str, list[str]]:
     control_lines = control_text.splitlines()
 
     # 初期化
-    control_dict = {}
+    control_dict: dict[str, list[str]] = {}
     control_dict["Depends"] = []
 
     # 1行ずつ分解
