@@ -2,7 +2,7 @@ import argparse
 
 # initファイルがあるのでimportされているのは関数そのもの
 # 同じディレクトリでもパッケージ名で指定する必要がある（と思われる）
-from template import for_sigma, joblib_sigma
+from debiantospdx import for_sigma, joblib_sigma
 
 
 # メインの処理

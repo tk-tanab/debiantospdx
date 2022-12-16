@@ -1,5 +1,5 @@
 # pytest -q tests で実行
-from testpackageforjoblibsigma import for_sigma, joblib_sigma
+from template import for_sigma, joblib_sigma
 
 
 def test_for_sigma():
