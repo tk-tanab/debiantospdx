@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "template"
+version = "0.1.0"
+description = "test to make package and set up python environment"
+authors = ["tk-tanab <tk-tanab@ist.osaka-u.ac.jp>"]
+readme = "README.md"
+repository = "https://github.com/tk-tanab/python-template"
+homepage = "https://github.com/tk-tanab/python-template"
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+black = "^22.10.0"
+flake8 = "^6.0.0"
+mypy = "^0.991"
+isort = "^5.10.1"
+Sphinx = "^5.3.0"
+sphinx-rtd-theme = "^1.1.1"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 120
+exclude = ".venv"
+
+[tool.mypy]
+exclude = ".venv"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+testpackageforjoblibsigma = "template.cli:entry"

@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "ms-python.python", //python
+        "mhutchie.git-graph", //Git
+        "eamodio.gitlens", //Git
+        "usernamehw.errorlens", //explain reason for Error
+        "KevinRose.vsc-python-indent", //format indent well
+        "oderwat.indent-rainbow", //colour indent line
+        "njpwerner.autodocstring" //automatically make doct("""~""")
+    ]
+}

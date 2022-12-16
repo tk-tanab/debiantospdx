@@ -1,0 +1,58 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test_args",
+            "type": "python",
+            "request": "launch",
+            "program": "template/__main__.py",
+            "cwd": "${workspaceFolder}", // デバッグでもテストでもここを参照する
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                // 適宜コメントアウトすることでデフォルト値を確認できる
+                "${input:inputString1}",
+                "${input:inputString2}",
+                "${input:inputString3}",
+                "${input:inputString4}",
+                "${input:selectString}"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "inputString1",
+            "type": "promptString",
+            "description": "引数とする文字列を入力",
+        },
+        {
+            "id": "inputString2",
+            "type": "promptString",
+            "description": "引数とする文字列を入力",
+        },
+        {
+            "id": "inputString3",
+            "type": "promptString",
+            "description": "引数とする文字列を入力",
+        },
+        {
+            "id": "inputString4",
+            "type": "promptString",
+            "description": "引数とする文字列を入力",
+        },
+        {
+            "id": "selectString",
+            "type": "pickString",
+            "options": [
+                "--both",
+                "--for_sigma",
+                "--joblib_sigma",
+            ],
+            "default": "migrate",
+            "description": "引数を選択してください"
+        }
+    ]
+}
