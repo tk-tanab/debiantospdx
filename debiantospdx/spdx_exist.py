@@ -2,15 +2,16 @@ import glob
 import os
 
 
-def spdx_exist(p_name, version) -> str:
+def spdx_exist(p_name, version="") -> str:
     """
     指定されたパッケージ情報を含むSPDXファイルの検出
-    ない場合はFalse、ある場合はSPDXファイルのパスを返す
+    ない場合は空、ある場合はSPDXファイルのパスを返す
 
     Args:
         p_name: 存在するか確認するパッケージ
+        version: パッケージのバージョン
     Returns:
-        bool or SPDXファイルのパス
+        空 or SPDXファイルのパス
     """
     if os.path.exists(p_name + ".spdx"):
         return p_name + ".spdx"

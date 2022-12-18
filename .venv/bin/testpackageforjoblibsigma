@@ -1,0 +1,6 @@
+#!/home/tk-tanab/taketo/syuron/git/debiantospdx/.venv/bin/python
+import sys
+from debiantospdx.cli import entry
+
+if __name__ == '__main__':
+    sys.exit(entry())

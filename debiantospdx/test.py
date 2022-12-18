@@ -26,5 +26,7 @@ doc_comment = """<text>Generated with DebianToSPDX and provided on an "AS IS" BA
     No content created from DebianToSPDX should be considered or used as legal advice.
     Consult an Attorney for any legal advice.</text>"""
 
-
 print(doc_comment)
+
+a = None
+print(bool(a))

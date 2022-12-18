@@ -10,7 +10,7 @@ import make_tv_dict
 import spdx_exist
 
 
-class Deb_Spdx:
+class DebSpdx:
 
     pv_dict: dict[str, str]  # {p_name: version}
     vrp_dict: dict[str, list[list[str]]]  # {vrp_name: [[p_name, c_operator, version]]}
@@ -18,6 +18,7 @@ class Deb_Spdx:
     control_dict: dict[str, list[str]]  # {field_name: [values]}
     package_name: str
     auth_name: str
+    organization: str
     first_mode: int
     rest_mode: int
     trail_list: list[str]  # [p_name]
@@ -30,7 +31,9 @@ class Deb_Spdx:
     def return_spdx(self):
         return self.tv_dict
 
-    def __init__(self, pv_dict, vrp_dict, package_name, auth_name, trail_list: list[str], first_mode=2, rest_mode=1):
+    def __init__(
+        self, pv_dict, vrp_dict, package_name, auth_name, organization, trail_list: list[str], first_mode=2, rest_mode=1
+    ):
         """
         初期化
         """
@@ -40,6 +43,7 @@ class Deb_Spdx:
         self.control_dict = {}
         self.package_name = package_name
         self.auth_name = auth_name
+        self.organization = organization
         self.trail_list = trail_list.copy()
         self.first_mode = first_mode
         self.rest_mode = rest_mode
@@ -89,7 +93,10 @@ class Deb_Spdx:
         # クリエーション情報の追加・修正
         cre_dict = tv_dict["Creation Information"][0]
         cre_dict["Creator"].append("Tool: spdx_transitive")
-        cre_dict["Creator"].append("Person: " + self.auth_name)
+        if self.auth_name is not None:
+            cre_dict["Creator"].append("Person: " + self.auth_name)
+        if self.organization is not None:
+            cre_dict["Creator"].append("Organization: " + self.organization)
 
         # ドキュメント情報の追加・修正
         doc_dict = tv_dict["Document Information"][0]
@@ -177,8 +184,15 @@ class Deb_Spdx:
                 mutual_list.append(real_dp_name)
             else:
                 snap_len_treated = len(self.treated_list)
-                new_spdx = Deb_Spdx(
-                    pv_dict, vrp_dict, real_dp_name, self.auth_name, self.trail_list, self.first_mode, self.rest_mode
+                new_spdx = DebSpdx(
+                    pv_dict,
+                    vrp_dict,
+                    real_dp_name,
+                    self.auth_name,
+                    self.organization,
+                    self.trail_list,
+                    self.first_mode,
+                    self.rest_mode,
                 )
                 r_mutual_list = new_spdx.run()
                 print("back", self.package_name)

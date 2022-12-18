@@ -14,45 +14,44 @@
             "justMyCode": true,
             "args": [
                 // 適宜コメントアウトすることでデフォルト値を確認できる
+                "/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX/temp1",
+                "-p",
+                "Taketo Tanabe",
+                "-o",
+                "Higo Lab",
                 "${input:inputString1}",
                 "${input:inputString2}",
-                "${input:inputString3}",
-                "${input:inputString4}",
-                "${input:selectString}"
+                "${input:selectString1}",
+                "${input:inputString0}" //all のときはコメントアウト
             ]
         }
     ],
     "inputs": [
         {
+            "id": "selectString1",
+            "type": "pickString",
+            "options": [
+                "--package",
+                "--all",
+                "--search",
+            ],
+            "default": "migrate",
+            "description": "引数を選択してください"
+        },
+        {
+            "id": "inputString0",
+            "type": "promptString",
+            "description": "package name",
+        },
+        {
             "id": "inputString1",
             "type": "promptString",
-            "description": "引数とする文字列を入力",
+            "description": "-m mode",
         },
         {
             "id": "inputString2",
             "type": "promptString",
-            "description": "引数とする文字列を入力",
+            "description": "-d dep_mode",
         },
-        {
-            "id": "inputString3",
-            "type": "promptString",
-            "description": "引数とする文字列を入力",
-        },
-        {
-            "id": "inputString4",
-            "type": "promptString",
-            "description": "引数とする文字列を入力",
-        },
-        {
-            "id": "selectString",
-            "type": "pickString",
-            "options": [
-                "--both",
-                "--for_sigma",
-                "--joblib_sigma",
-            ],
-            "default": "migrate",
-            "description": "引数を選択してください"
-        }
     ]
 }
