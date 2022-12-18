@@ -1,4 +1,4 @@
-# Debian to SPDX
+# Debian-to-SPDX
 
 [![Apache2.0 License](https://img.shields.io/badge/License-Apatch2.0-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/apache-2.0/)
 
