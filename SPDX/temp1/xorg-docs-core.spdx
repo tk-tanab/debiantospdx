@@ -1,0 +1,42 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/xorg-docs-core_1:1.7.1-1.2-523e156b-617a-507d-997a-f48c4e16b4e1
+DocumentName: xorg-docs-core_1:1.7.1-1.2
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-xorg-docs-core
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:51Z
+
+
+## Package
+
+PackageName: xorg-docs-core
+PackageVersion: 1:1.7.1-1.2
+SPDXID: SPDXRef-xorg-docs-core
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>Core documentation for the X.org X Window System
+ This package contains core documentation for the X.org X Window
+ System. This currently includes only a set of manpages which are
+ standard for the system.</text>
+
+
+## File
+
+## Extracted License
+

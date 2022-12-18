@@ -1,0 +1,47 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/libjson-glib-1.0-common_1.6.6-1build1-2d66b5ba-d480-5210-a91d-c98142c5ed9a
+DocumentName: libjson-glib-1.0-common_1.6.6-1build1
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-libjson-glib-1.0-common
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:40Z
+
+
+## Package
+
+PackageName: libjson-glib-1.0-common
+PackageVersion: 1.6.6-1build1
+SPDXID: SPDXRef-libjson-glib-1.0-common
+PackageHomePage: https://wiki.gnome.org/Projects/JsonGlib
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>GLib JSON manipulation library (common files)
+ JSON-GLib is a library for parsing, generating and manipulating JavaScript
+ Object Notation (JSON) data streams using the GLib type system. It allows
+ manipulating JSON data types with a Document Object Model API. It also
+ allows serializing and deserializing simple or complex GObjects to and
+ from JSON data types.
+ .
+ This package contains the translations files.</text>
+
+
+## File
+
+## Extracted License
+

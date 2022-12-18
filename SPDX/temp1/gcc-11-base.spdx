@@ -1,0 +1,42 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/gcc-11-base_11.3.0-1ubuntu1~22.04-b886336e-ef13-54b8-928c-93b43f32e73a
+DocumentName: gcc-11-base_11.3.0-1ubuntu1~22.04
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-gcc-11-base
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:51Z
+
+
+## Package
+
+PackageName: gcc-11-base
+PackageVersion: 11.3.0-1ubuntu1~22.04
+SPDXID: SPDXRef-gcc-11-base
+PackageHomePage: http://gcc.gnu.org/
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>GCC, the GNU Compiler Collection (base package)
+ This package contains files common to all languages and libraries
+ contained in the GNU Compiler Collection (GCC).</text>
+
+
+## File
+
+## Extracted License
+

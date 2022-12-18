@@ -1,0 +1,46 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/dns-root-data_2021011101-62d6da02-b34c-53a5-b95b-6113f069b5aa
+DocumentName: dns-root-data_2021011101
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-dns-root-data
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:54Z
+
+
+## Package
+
+PackageName: dns-root-data
+PackageVersion: 2021011101
+SPDXID: SPDXRef-dns-root-data
+PackageHomePage: https://data.iana.org/root-anchors/
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>DNS root data including root zone and DNSSEC key
+ This package contains various root zone related data as published
+ by IANA to be used by various DNS software as a common source
+ of DNS root zone data, namely:
+ .
+  * Root Hints (root.hints)
+  * Root Trust Anchors (root.key, root.ds)</text>
+
+
+## File
+
+## Extracted License
+

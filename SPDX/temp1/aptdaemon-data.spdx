@@ -1,0 +1,46 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/aptdaemon-data_1.1.1+bzr982-0ubuntu39-d13a1520-764d-5f63-b4a6-10cb292f5a53
+DocumentName: aptdaemon-data_1.1.1+bzr982-0ubuntu39
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-aptdaemon-data
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:52Z
+
+
+## Package
+
+PackageName: aptdaemon-data
+PackageVersion: 1.1.1+bzr982-0ubuntu39
+SPDXID: SPDXRef-aptdaemon-data
+PackageHomePage: https://launchpad.net/aptdaemon
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>data files for clients
+ Aptdaemon is a transaction based package management daemon. It allows
+ normal users to perform package management tasks, e.g. refreshing the
+ cache, upgrading the system, installing or removing software packages.
+ .
+ This package provides common data files (e.g. icons) for aptdaemon
+ clients.</text>
+
+
+## File
+
+## Extracted License
+

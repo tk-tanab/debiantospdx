@@ -1,0 +1,45 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/sound-theme-freedesktop_0.8-2ubuntu1-20eeab93-00bc-5d97-a3cb-6c57e56bfe37
+DocumentName: sound-theme-freedesktop_0.8-2ubuntu1
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-sound-theme-freedesktop
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:41Z
+
+
+## Package
+
+PackageName: sound-theme-freedesktop
+PackageVersion: 0.8-2ubuntu1
+SPDXID: SPDXRef-sound-theme-freedesktop
+PackageHomePage: https://www.freedesktop.org/wiki/Specifications/sound-theme-spec/
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>freedesktop.org sound theme
+ The default freedesktop.org sound theme following the XDG theming
+ specification. It contains a full set of sounds for different
+ desktop events.
+ .
+ These sounds come from various sources: KDE, Ekiga, Pidgin/Purple, ALSA.</text>
+
+
+## File
+
+## Extracted License
+

@@ -1,0 +1,41 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/gnome-desktop3-data_42.4-0ubuntu1-e1012674-a47c-5d28-962e-74d5c0b9a378
+DocumentName: gnome-desktop3-data_42.4-0ubuntu1
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-gnome-desktop3-data
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:46Z
+
+
+## Package
+
+PackageName: gnome-desktop3-data
+PackageVersion: 42.4-0ubuntu1
+SPDXID: SPDXRef-gnome-desktop3-data
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>Common files for GNOME desktop apps
+ This package includes some files that are shared between several GNOME
+ apps (internationalization files).</text>
+
+
+## File
+
+## Extracted License
+

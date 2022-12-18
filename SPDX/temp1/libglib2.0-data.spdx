@@ -1,0 +1,46 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/libglib2.0-data_2.72.1-1-e57fefe7-7d81-5259-bb5c-93771a3b4826
+DocumentName: libglib2.0-data_2.72.1-1
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-libglib2.0-data
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:33Z
+
+
+## Package
+
+PackageName: libglib2.0-data
+PackageVersion: 2.72.1-1
+SPDXID: SPDXRef-libglib2.0-data
+PackageHomePage: https://wiki.gnome.org/Projects/GLib
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>Common files for GLib library
+ GLib is a library containing many useful C routines for things such
+ as trees, hashes, lists, and strings.  It is a useful general-purpose
+ C library used by projects such as GTK+, GIMP, and GNOME.
+ .
+ This package is needed for the runtime libraries to display messages in
+ languages other than English.</text>
+
+
+## File
+
+## Extracted License
+

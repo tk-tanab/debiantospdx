@@ -1,0 +1,42 @@
+## Document Information
+
+SPDXVersion: SPDX-2.2
+DataLicense: CC0-1.0
+DocumentNamespace: http://spdx.org/spdxdocs/ubuntu-wallpapers-jammy_22.04.4-0ubuntu1-49d0b045-017d-5d36-b29b-2fe0eade666b
+DocumentName: ubuntu-wallpapers-jammy_22.04.4-0ubuntu1
+SPDXID: SPDXRef-DOCUMENT
+DocumentComment: <text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        No content created from DebianToSPDX should be considered or used as legal advice.
+        Consult an Attorney for any legal advice.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ubuntu-wallpapers-jammy
+
+
+## Creation Information
+
+Creator: Tool: spdx_transitive
+Creator: Person: Taketo Tanabe
+Creator: Organization: Higo Lab
+Created: 2022-12-18T10:16:57Z
+
+
+## Package
+
+PackageName: ubuntu-wallpapers-jammy
+PackageVersion: 22.04.4-0ubuntu1
+SPDXID: SPDXRef-ubuntu-wallpapers-jammy
+PackageHomePage: https://launchpad.net/ubuntu-wallpapers
+PackageDownloadLocation: NOASSERTION
+PackageLicenseDeclared: NOASSERTION
+PackageLicenseConcluded: NOASSERTION
+PackageCopyrightText: NOASSERTION
+FilesAnalyzed: false
+PackageComment: <text>Ubuntu 22.04 Wallpapers
+ Alternative wallpapers for Ubuntu 22.04 and a Canonical-created greyscale
+ wallpaper.</text>
+
+
+## File
+
+## Extracted License
+
