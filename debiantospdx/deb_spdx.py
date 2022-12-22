@@ -24,7 +24,7 @@ class DebSpdx:
     rest_mode: int
     rp_count: int
     trail_list: list[str]  # [p_name]
-    treated_num: int = 0
+    treated_num: list[int] = [0]
     treated_list: list[str] = []
     doc_comment = """<text> Generated with DebianToSPDX and provided on an "AS IS" BASIS,
                         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -349,8 +349,8 @@ class DebSpdx:
 
         self.merge_tv_control()
 
-        self.treated_num += 1
-        print("\rNumber of Analyzed Pacakges: " + str(self.treated_num) + "/" + str(len(self.pv_dict)), end="")
+        self.treated_num[0] += 1
+        print("\rNumber of Analyzed Pacakges: " + str(self.treated_num[0]) + "/" + str(len(self.pv_dict)), end="")
 
         mutual_list = self.add_relationship(self.control_dict["Depends"])
 

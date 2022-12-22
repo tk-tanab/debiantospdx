@@ -220,10 +220,3 @@ def print_spdx_files_info():
     print("Number of Packages".ljust(50) + ":", count_packages())
     print("Number of Files".ljust(50) + ":", count_files())
     print("Number of times Replace or Provide was referenced".ljust(50) + ":", count_replace(dr_dict))
-
-
-if __name__ == "__main__":
-    os.chdir("/home/tk-tanab/taketo/syuron/git/spdx_transitive/SPDX/ALL2")
-    # p_name = "code"
-    # print_package_info(p_name)
-    print_spdx_files_info()

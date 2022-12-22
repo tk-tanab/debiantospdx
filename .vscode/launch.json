@@ -14,12 +14,12 @@
             "justMyCode": true,
             "args": [
                 // 適宜コメントアウトすることでデフォルト値を確認できる
-                "/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX/temp/ALL",
+                "/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX/temp",
                 "-p",
                 "Taketo Tanabe",
                 "-o",
                 "Higo Lab",
-                // "${input:inputString1}",
+                "${input:inputString1}",
                 // "${input:inputString2}",
                 "${input:selectString1}",
                 "${input:inputString0}" //パッケージ名不要のオプションではコメントアウト

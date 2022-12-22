@@ -107,7 +107,7 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
 
     time_finish = time.perf_counter()
 
-    print("debiantospdx finish")
+    print("\ndebiantospdx finish")
     print("time: ", time_finish - time_start)
 
 
@@ -174,18 +174,4 @@ def entry():
         all_analyze=args.all,
         search=args.search,
         printinfo=args.printinfo,
-    )
-
-
-if __name__ == "__main__":
-    main(
-        path="/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX",
-        person="Taketo",
-        organization="Higo Lab",
-        mode=0,
-        dep_mode=0,
-        package=["zstd"],
-        all_analyze=False,
-        search=None,
-        printinfo=False,
     )
