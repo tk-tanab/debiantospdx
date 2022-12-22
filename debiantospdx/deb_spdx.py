@@ -1,4 +1,5 @@
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -7,7 +8,7 @@ import uuid
 import control_to_dict
 import dict_to_tv
 import make_tv_dict
-import spdx_exist
+from search import take_spdx_path
 
 
 class DebSpdx:
@@ -21,12 +22,14 @@ class DebSpdx:
     organization: str
     first_mode: int
     rest_mode: int
+    rp_count: int
     trail_list: list[str]  # [p_name]
+    treated_num: int = 0
     treated_list: list[str] = []
-    doc_comment = """<text>Generated with DebianToSPDX and provided on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        No content created from DebianToSPDX should be considered or used as legal advice.
-        Consult an Attorney for any legal advice.</text>"""
+    doc_comment = """<text> Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+                        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                        No content created from DebianToSPDX should be considered or used as legal advice.
+                        Consult an Attorney for any legal advice. </text>"""
 
     def return_spdx(self):
         return self.tv_dict
@@ -47,6 +50,7 @@ class DebSpdx:
         self.trail_list = trail_list.copy()
         self.first_mode = first_mode
         self.rest_mode = rest_mode
+        self.rp_count = 0
 
     def init_treated_list(self):
         self.treated_list.clear()
@@ -75,10 +79,6 @@ class DebSpdx:
         """
         tv_dict = self.tv_dict
         control_dict = self.control_dict
-
-        # 参照に不整合が生じる場合
-        if control_dict["Package"][0] != self.package_name:
-            print(control_dict["Package"][0], self.package_name, "Error")
 
         # パッケージ情報の追加・修正
         package_dict = tv_dict["Package"][0]
@@ -155,6 +155,7 @@ class DebSpdx:
                     for real_p_list in vrp_dict[or_list[0]]:
                         if self.check_version(or_list[1:], real_p_list[1:]):
                             real_dp_name = real_p_list[0]
+                            self.rp_count += 1
                             break
                     else:
                         continue
@@ -169,7 +170,7 @@ class DebSpdx:
                 termed_d_list.append(real_dp_name)
 
             # 既に存在しているとき
-            if spdx_path := spdx_exist.spdx_exist(real_dp_name, pv_dict[real_dp_name]):
+            if spdx_path := take_spdx_path(real_dp_name):
                 self.add_external_ref(spdx_path, real_dp_name)
             # このパッケージの別の枝(未出力)で調査済みのとき
             elif real_dp_name in not_out_list:
@@ -195,7 +196,6 @@ class DebSpdx:
                     self.rest_mode,
                 )
                 r_mutual_list = new_spdx.run()
-                print("back", self.package_name)
 
                 # 下の階層のパッケージと相互依存になっているとき
                 if r_mutual_list != []:
@@ -334,7 +334,6 @@ class DebSpdx:
 
         package_name = self.package_name
         self.trail_list.append(package_name)
-        print(package_name, "enter")
 
         package_status = subprocess.run(
             ["dpkg-query", "-s", package_name], capture_output=True, text=True
@@ -350,6 +349,9 @@ class DebSpdx:
 
         self.merge_tv_control()
 
+        self.treated_num += 1
+        print("\rNumber of Analyzed Pacakges: " + str(self.treated_num) + "/" + str(len(self.pv_dict)), end="")
+
         mutual_list = self.add_relationship(self.control_dict["Depends"])
 
         spdx_text = dict_to_tv.dict_to_tv(self.tv_dict)
@@ -361,6 +363,12 @@ class DebSpdx:
             else:
                 with open(package_name + ".spdx", mode="w") as f:
                     f.write(spdx_text)
-            print(package_name, "finish")
+
+        # 依存関係の参照において置換した回数を保存
+        with open("rp_times.json", mode="r") as f:
+            rp_times: dict[str, int] = json.load(f)
+        rp_times[package_name] = self.rp_count
+        with open("rp_times.json", "w") as f:
+            json.dump(rp_times, f, indent=4)
 
         return mutual_list

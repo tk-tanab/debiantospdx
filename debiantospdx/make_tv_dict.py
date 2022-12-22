@@ -24,11 +24,11 @@ def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bo
     copyright_filepath = ""
 
     for value in file_list:
-        if os.path.isfile(value):
+        if os.path.isfile(value):  # type: ignore
             try:
                 with open(value, mode="rb") as f:
                     file_data = f.read()
-                hash_sha1 = hashlib.sha1(file_data).hexdigest()
+                hash_sha1 = hashlib.sha1(file_data).hexdigest()  # type: ignore
                 hash_list.append(hash_sha1)
 
                 if scan_copyrightfile and value.endswith("copyright"):
@@ -104,8 +104,7 @@ def scancode(is_scan: bool, package_name: str):
                 "PackageLicenseDeclared": ["NOASSERTION"],
                 "PackageLicenseConcluded": ["NOASSERTION"],
                 "PackageLicenseInfoFromFiles": ["NOASSERTION"],
-                "PackageCopyrightText": ["NOASSERTION"]
-                # "FilesAnalyzed": ["false"]
+                "PackageCopyrightText": ["NOASSERTION"],
             }
         ],
         "File": [],
@@ -113,7 +112,9 @@ def scancode(is_scan: bool, package_name: str):
     }
     if is_scan:
         output = package_name + "/output.tag"
-        subprocess.run(["scancode", "-clpi", package_name, "--spdx-tv", output], stdout=subprocess.PIPE)
+        subprocess.run(
+            ["scancode", "-clpi", package_name, "--spdx-tv", output], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         tv_dict = tv_to_dict.tv_to_dict(output)
         tv_dict["Creation Information"][0]["Created"] = [datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")]

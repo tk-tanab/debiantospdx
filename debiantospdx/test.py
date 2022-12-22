@@ -1,15 +1,11 @@
 # 2022-11-21T03:49:09Z
 # YYYY-MM-DDThh:mm:ssZ
-import os
-import pathlib
-import shutil
 
+import json
 
-def remove_glob(dirname, pathname):
-    path_object = pathlib.Path(pathname)
-    for p in path_object.glob("**"):
-        if os.path.isdir(p) and dirname == os.path.basename(p):
-            shutil.rmtree(p)
-
-
-remove_glob("__pycache__", ".venv")
+# with open("rp_times.json", mode="r") as f:
+#     rp_times: dict[str, int] = json.load(f)
+rp_times = {}
+rp_times["aa"] = 22
+with open("rp_times.json", "w") as f:
+    json.dump(rp_times, f, indent=4)

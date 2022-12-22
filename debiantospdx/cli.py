@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 import re
 import subprocess
@@ -6,7 +7,7 @@ import sys
 import time
 
 import deb_spdx
-import spdx_exist
+from search import print_package_info, print_spdx_files_info, take_spdx_path
 
 
 def make_pv_vrp_dict(pv_dict: dict[str, str], vrp_dict: dict[str, list[list[str]]]):
@@ -59,7 +60,7 @@ def add_vrp_dict(vrp_names: str, p_name: str, vrp_dict: dict[str, list[list[str]
             vrp_dict[vrp_name_split[0]] = [[p_name] + vrp_name_split[1:]]
 
 
-def main(package, person, organization, all_analyze, path, search, mode, dep_mode) -> None:
+def main(package, person, organization, all_analyze, path, search, mode, dep_mode, printinfo) -> None:
     time_start = time.perf_counter()
 
     pv_dict: dict[str, str] = {}  # {p_name: version}
@@ -70,23 +71,22 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
     # ディレクトリ記憶
     cwd = os.getcwd()
 
-    try:
-        os.chdir(path)
-    except FileNotFoundError:
-        print(path, "is Not Found", file=sys.stderr)
-        exit(1)
+    os.chdir(path)
 
     if search is not None:
-        # SPDXファイル検索
-        spdx_path = spdx_exist.spdx_exist(search)
-        if spdx_path == "":
-            print("SPDX file of", search, "is Not exist", file=sys.stderr)
-        else:
-            print(search, "is in", spdx_path)
+        # パッケージ情報の出力
+        print_package_info(package)
+    elif printinfo:
+        # SPDX file群の情報出力
+        print_spdx_files_info()
     elif all_analyze:
+        os.mkdir("ALL")
+        os.chdir("ALL")
+        with open("rp_times.json", "w") as f:
+            json.dump({}, f, indent=4)
         # すべてのパッケージ解析
-        for p_name in pv_dict.keys():
-            if not spdx_exist.spdx_exist(p_name, pv_dict[p_name]):
+        for p_name in pv_dict:
+            if not take_spdx_path(p_name):
                 deb_class = deb_spdx.DebSpdx(pv_dict, vrp_dict, p_name, person, organization, [], mode, mode)
                 deb_class.init_treated_list()
                 deb_class.run()
@@ -95,6 +95,10 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
         if package not in pv_dict:
             print(package, "is Not exist", file=sys.stderr)
         else:
+            os.mkdir(package)
+            os.chdir(package)
+            with open("rp_times.json", "w") as f:
+                json.dump({}, f, indent=4)
             deb_class = deb_spdx.DebSpdx(pv_dict, vrp_dict, package, person, organization, [], mode, dep_mode)
             deb_class.init_treated_list()
             deb_class.run()
@@ -103,12 +107,23 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
 
     time_finish = time.perf_counter()
 
-    print("time", time_finish - time_start)
+    print("debiantospdx finish")
+    print("time: ", time_finish - time_start)
 
 
 # 引数の処理 （エントリーポイント）
 def entry():
-    parser = argparse.ArgumentParser(description="Add directory path and some option")
+    parser = argparse.ArgumentParser(
+        prog="debiantospdx",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description="""Add directory path and some option.
+
+    Analysis mode has 4 options
+        0: Do not analyze files
+        1: Analyze the file, but do not analyze licenses
+        2: Analyze licenses of copyright file only
+        3: Analyze licenses of all files""",
+    )
     # 必須の位置引数
     parser.add_argument("path", type=str, help="Path of directory where SPDX files are located")
 
@@ -121,29 +136,22 @@ def entry():
         "--mode",
         default=2,
         type=int,
-        help="""Analysis mode for the specified package or all packages
-                    0: Do not analyze files
-                    1: Analyze the file, but do not analyze licenses
-                    2: Analyze licenses of copyright file only
-                    3: Analyze licenses of all files""",
+        help="Analysis mode for the specified package or all packages (default = 2)",
     )
     parser.add_argument(
         "-d",
         "--dep_mode",
         default=1,
         type=int,
-        help="""Analysis mode for the dependent packages
-                    0: Do not analyze files
-                    1: Analyze the file, but do not analyze licenses
-                    2: Analyze licenses of copyright file only
-                    3: Analyze licenses of all files""",
+        help="Analysis mode for the dependent packages (default = 1)",
     )
 
     # 排他的で必須なオプション引数
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--package", type=str, help="Package to be analyzed")
-    group.add_argument("--all", action="store_true", help="Analysis of all Debian packages")
-    group.add_argument("--search", type=str, help="Package you want to find its SPDX file")
+    group.add_argument("--package", type=str, help="Analyze specified package")
+    group.add_argument("--all", action="store_true", help="Analyze all Debian packages")
+    group.add_argument("--search", type=str, help="Print package information from SPDX files")
+    group.add_argument("--printinfo", action="store_true", help="Print SPDX files' information")
 
     args = parser.parse_args()
 
@@ -153,6 +161,8 @@ def entry():
         args_person = " ".join(args.person)
     if args.organization is not None:
         args_organization = " ".join(args.organization)
+    if not (0 <= args.mode <= 3 and 0 <= args.dep_mode <= 3):
+        raise ValueError("Undefined mode")
 
     main(
         path=args.path,
@@ -163,6 +173,7 @@ def entry():
         package=args.package,
         all_analyze=args.all,
         search=args.search,
+        printinfo=args.printinfo,
     )
 
 
@@ -174,6 +185,7 @@ if __name__ == "__main__":
         mode=0,
         dep_mode=0,
         package=["zstd"],
-        all_analyze=None,
+        all_analyze=False,
         search=None,
+        printinfo=False,
     )

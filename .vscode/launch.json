@@ -14,15 +14,15 @@
             "justMyCode": true,
             "args": [
                 // 適宜コメントアウトすることでデフォルト値を確認できる
-                "/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX/temp1",
+                "/home/tk-tanab/taketo/syuron/git/debiantospdx/SPDX/temp/ALL",
                 "-p",
                 "Taketo Tanabe",
                 "-o",
                 "Higo Lab",
-                "${input:inputString1}",
-                "${input:inputString2}",
+                // "${input:inputString1}",
+                // "${input:inputString2}",
                 "${input:selectString1}",
-                "${input:inputString0}" //all のときはコメントアウト
+                "${input:inputString0}" //パッケージ名不要のオプションではコメントアウト
             ]
         }
     ],
@@ -34,6 +34,7 @@
                 "--package",
                 "--all",
                 "--search",
+                "--printinfo"
             ],
             "default": "migrate",
             "description": "引数を選択してください"
