@@ -6,6 +6,5 @@
 # Originally from
 # __author__ = """Jannis Gebauer"""
 # __email__ = 'support@pyup.io'
-# __version__ = '0.5.2a'
 
 from dparse2.parser import parse  # noqa

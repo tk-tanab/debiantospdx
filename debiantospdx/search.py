@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import pprint
 
 
 def take_spdx_path(p_name) -> str:
@@ -53,6 +52,24 @@ def take_pakages(path):
     return packages
 
 
+def take_pakage_version(path):
+    packages = []
+    in_package_info = False
+    p_and_v = []
+    with open(path, mode="r") as f:
+        for line in f:
+            if line.startswith("PackageName: "):
+                p_and_v.append(line[13:].strip())
+                in_package_info = True
+            if in_package_info:
+                p_and_v.append(line[16:].strip())
+                packages.append(p_and_v.copy())
+                p_and_v.clear()
+            if line == "## File\n":
+                break
+    return packages
+
+
 def take_expaths(path):
     expaths = []
     with open(path, mode="r") as f:
@@ -72,7 +89,6 @@ def make_spdx_dict() -> dict[str, list[str]]:
         return spdx_dict
 
 
-# 実行時間を考慮する
 def make_depend_recursive_dict(spdx_dict: dict[str, list[str]]):
     dr_dict: dict[str, list[str]] = {}
     for spdx in spdx_dict:
@@ -194,6 +210,11 @@ def count_replace(dr_dict: dict[str, list[str]]):
     return sum_counter
 
 
+def print_pvlist(pv_list):
+    for pv in pv_list:
+        print(" ", pv[0], "(" + pv[1] + ")")
+
+
 def print_package_info(p_name):
     spdx_path = take_spdx_path(p_name)
     version = pick_version(spdx_path, p_name)
@@ -204,10 +225,12 @@ def print_package_info(p_name):
     print("Package Name".ljust(17) + ":", p_name)
     print("Package Version".ljust(17) + ":", version)
     print("SPDX File Name".ljust(17) + ":", spdx_path, "\n")
-    print("Dependency Recursive:")
-    pprint.pprint(depends, width=150, compact=True)
-    print("Reverse Dependency Recursive:")
-    pprint.pprint(rdepends, width=150, compact=True)
+    print("--Dependency Recursive--")
+    print("---------------------------------------------")
+    print_pvlist(depends)
+    print("\n--Reverse Dependency Recursive--")
+    print("---------------------------------------------")
+    print_pvlist(rdepends)
 
 
 def print_spdx_files_info():

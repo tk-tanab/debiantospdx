@@ -14,9 +14,9 @@ from io import StringIO
 import toml
 import yaml
 
-from packaging.requirements import InvalidRequirement
-from packaging.requirements import Requirement as PackagingRequirement
-from packaging.specifiers import SpecifierSet
+from packvers.requirements import InvalidRequirement
+from packvers.requirements import Requirement as PackagingRequirement
+from packvers.specifiers import SpecifierSet
 
 from dparse2.dependencies import Dependency, DependencyFile
 

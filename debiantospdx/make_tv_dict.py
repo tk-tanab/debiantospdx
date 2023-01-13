@@ -4,7 +4,7 @@ import shutil
 import subprocess
 from datetime import datetime
 
-import tv_to_dict
+from debiantospdx import tv_to_dict
 
 
 def analyze_file(package_name: str, file_list: list[str], scan_copyrightfile: bool):

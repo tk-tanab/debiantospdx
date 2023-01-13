@@ -5,10 +5,8 @@ import re
 import subprocess
 import uuid
 
-import control_to_dict
-import dict_to_tv
-import make_tv_dict
-from search import take_spdx_path
+from debiantospdx import control_to_dict, dict_to_tv, make_tv_dict
+from debiantospdx.search import take_spdx_path
 
 
 class DebSpdx:
@@ -26,9 +24,9 @@ class DebSpdx:
     trail_list: list[str]  # [p_name]
     treated_num: list[int] = [0]
     treated_list: list[str] = []
-    doc_comment = """<text> Generated with DebianToSPDX and provided on an "AS IS" BASIS,
+    doc_comment = """<text> Generated with debiantospdx and provided on an "AS IS" BASIS,
                         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                        No content created from DebianToSPDX should be considered or used as legal advice.
+                        No content created from debiantospdx should be considered or used as legal advice.
                         Consult an Attorney for any legal advice. </text>"""
 
     def return_spdx(self):
@@ -92,7 +90,7 @@ class DebSpdx:
 
         # クリエーション情報の追加・修正
         cre_dict = tv_dict["Creation Information"][0]
-        cre_dict["Creator"].append("Tool: spdx_transitive")
+        cre_dict["Creator"].append("Tool: debiantospdx")
         if self.auth_name is not None:
             cre_dict["Creator"].append("Person: " + self.auth_name)
         if self.organization is not None:

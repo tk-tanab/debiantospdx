@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "debiantospdx"
-version = "0.1.0"
+version = "0.1.3"
 description = "This tool generate SPDX files from your Debian system / packages"
 authors = ["tk-tanab <tk-tanab@ist.osaka-u.ac.jp>"]
 readme = "README.md"
@@ -10,7 +10,7 @@ license = "Apache-2.0"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-scancode-toolkit = "^31.2.1"
+scancode-toolkit = "31.2.4"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"

@@ -6,8 +6,12 @@ import subprocess
 import sys
 import time
 
-import deb_spdx
-from search import print_package_info, print_spdx_files_info, take_spdx_path
+from debiantospdx import deb_spdx
+from debiantospdx.search import (
+    print_package_info,
+    print_spdx_files_info,
+    take_spdx_path,
+)
 
 
 def make_pv_vrp_dict(pv_dict: dict[str, str], vrp_dict: dict[str, list[list[str]]]):
@@ -75,7 +79,7 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
 
     if search is not None:
         # パッケージ情報の出力
-        print_package_info(package)
+        print_package_info(search)
     elif printinfo:
         # SPDX file群の情報出力
         print_spdx_files_info()
@@ -127,8 +131,11 @@ def entry():
     # 必須の位置引数
     parser.add_argument("path", type=str, help="Path of directory where SPDX files are located")
 
+    # 必須のオプション引数
+    parser.add_argument(
+        "-p", "--person", nargs="+", type=str, required=True, help="The person that created the SPDX file"
+    )
     # オプション引数 変数名は長い方になる（p, oは省略形）
-    parser.add_argument("-p", "--person", nargs="+", type=str, help="The person that created the SPDX file")
     parser.add_argument("-o", "--organization", nargs="+", type=str, help="The organization that created the SPDX file")
 
     parser.add_argument(
