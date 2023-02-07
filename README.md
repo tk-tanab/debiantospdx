@@ -1,13 +1,10 @@
-# Debian-to-SPDX
+# debiantospdx
 
 [![Apache2.0 License](https://img.shields.io/badge/License-Apatch2.0-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/apache-2.0/)
 
-vscode, Github, poetryを使ったpythonの環境設定とパッケージ作成のテンプレート
+システムに存在するすべてのDebianパッケージのSPDXファイルを生成するコマンドラインツール
 
-書き方の参考にするために適当な関数を残してあるが設定ファイルをクリーンにしているため、そのままでは動かない。
-動かすにはjoblibを入れる必要がある。
-
-また、python-templateやtemplateは作成するリポジトリやパッケージの名前に合わせて変更すること
+パッケージ名・バージョン・ソフトウェアライセンス・コピーライト・パッケージ間の依存関係の解析を行う
 
 ## Usage/Examples
 
