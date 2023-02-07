@@ -9,8 +9,24 @@
 ## Usage/Examples
 
 ```bash
-teplate 1 3 5 -c 22 --both
+debiantospdx [ディレクトリのパス] [オプション]
 ```
+SPDXファイルを置くパスをして実行する
+
+オプションについては以下の通り
+```bash
+  -h, --help            HELPメッセージの出力
+  
+  -p, --person          SPDXファイルの作者名（個人）
+  -pe                   SPDXファイルの作者のメールアドレス
+  -o, --organization    SPDXファイルの作者名（組織）
+  -oe                   SPDXファイルの作者のメールアドレス
+  
+  --package             指定したパッケージのPDXファイルを生成
+  --all                 インストール済みのすべてのパッケージのSPDXファイルを生成
+  --search              指定したパッケージの情報をSPDXファイルから抽出
+```
+
 
 ## Authors
 
