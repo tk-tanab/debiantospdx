@@ -165,13 +165,11 @@ def entry():
     args_organization = None
     if ((args.package is not None) or args.all) and ((args.person is None) and (args.organization is None)):
         raise Exception("Enter Creator Name: person or organization")
-    if ((args.package is None) != (args.pe is None)) or ((args.organization is None) != (args.oe is None)):
-        raise Exception("Enter Creator Name and Email")
 
     if args.person is not None:
-        args_person = " ".join(args.person) + "<" + args.pe + ">"
+        args_person = " ".join(args.person) + " (" + args.pe + ")"
     if args.organization is not None:
-        args_organization = " ".join(args.organization) + "<" + args.oe + ">"
+        args_organization = " ".join(args.organization) + " (" + args.oe + ")"
 
     if not (0 <= args.mode <= 3 and 0 <= args.dep_mode <= 3):
         raise ValueError("Undefined mode")
