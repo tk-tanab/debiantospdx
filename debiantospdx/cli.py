@@ -131,12 +131,11 @@ def entry():
     # 必須の位置引数
     parser.add_argument("path", type=str, help="Path of directory where SPDX files are located")
 
-    # 必須のオプション引数
-    parser.add_argument(
-        "-p", "--person", nargs="+", type=str, required=True, help="The person that created the SPDX file"
-    )
     # オプション引数 変数名は長い方になる（p, oは省略形）
+    parser.add_argument("-p", "--person", nargs="+", type=str, help="The person that created the SPDX file")
+    parser.add_argument("-pe", type=str, help="Person's email")
     parser.add_argument("-o", "--organization", nargs="+", type=str, help="The organization that created the SPDX file")
+    parser.add_argument("-oe", type=str, help="Organization's email")
 
     parser.add_argument(
         "-m",
@@ -164,10 +163,16 @@ def entry():
 
     args_person = None
     args_organization = None
+    if ((args.package is not None) or args.all) and ((args.person is None) and (args.organization is None)):
+        raise Exception("Enter Creator Name: person or organization")
+    if ((args.package is None) != (args.pe is None)) or ((args.organization is None) != (args.oe is None)):
+        raise Exception("Enter Creator Name and Email")
+
     if args.person is not None:
-        args_person = " ".join(args.person)
+        args_person = " ".join(args.person) + "<" + args.pe + ">"
     if args.organization is not None:
-        args_organization = " ".join(args.organization)
+        args_organization = " ".join(args.organization) + "<" + args.oe + ">"
+
     if not (0 <= args.mode <= 3 and 0 <= args.dep_mode <= 3):
         raise ValueError("Undefined mode")
 

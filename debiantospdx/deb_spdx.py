@@ -145,12 +145,14 @@ class DebSpdx:
 
         for ori_list in dori_list:
             for or_list in ori_list:
+
                 if or_list[0] in pv_dict and self.check_version(or_list[1:], ["=", pv_dict[or_list[0]]]):
                     real_dp_name = or_list[0]
                     break
 
                 elif or_list[0] in vrp_dict:
                     for real_p_list in vrp_dict[or_list[0]]:
+
                         if self.check_version(or_list[1:], real_p_list[1:]):
                             real_dp_name = real_p_list[0]
                             self.rp_count += 1

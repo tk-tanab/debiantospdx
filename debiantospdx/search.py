@@ -58,13 +58,14 @@ def take_pakage_version(path):
     p_and_v = []
     with open(path, mode="r") as f:
         for line in f:
-            if line.startswith("PackageName: "):
-                p_and_v.append(line[13:].strip())
-                in_package_info = True
             if in_package_info:
                 p_and_v.append(line[16:].strip())
                 packages.append(p_and_v.copy())
                 p_and_v.clear()
+                in_package_info = False
+            if line.startswith("PackageName: "):
+                p_and_v.append(line[13:].strip())
+                in_package_info = True
             if line == "## File\n":
                 break
     return packages
@@ -105,24 +106,24 @@ def make_dr_dict_sub(spdx_path: str, dr_dict: dict[str, list[str]], spdx_dict: d
             make_dr_dict_sub(spdx, dr_dict, spdx_dict)
         dr_dict[spdx_path] += dr_dict[spdx]
     else:
-        dr_dict[spdx_path] = list(set(dr_dict[spdx_path]))
+        dr_dict[spdx_path] = list(set(dr_dict[spdx_path]))  # type: ignore
 
 
-def take_depends_recursive(p_name: str, spdx_path: str, dr_dict: dict[str, list[str]]):
-    depends = take_pakages(spdx_path)
-    depends.remove(p_name)
+def take_depends_recursive(pv: list[str], spdx_path: str, dr_dict: dict[str, list[str]]):
+    depends = take_pakage_version(spdx_path)
+    depends.remove(pv)
     for ex_spdx in dr_dict[spdx_path]:
-        depends += take_pakages(ex_spdx)
+        depends += take_pakage_version(ex_spdx)
     else:
         return depends
 
 
-def take_rdepends_recursive(p_name: str, spdx_path: str, dr_dict: dict[str, list[str]]):
-    rdepends = take_pakages(spdx_path)
-    rdepends.remove(p_name)
+def take_rdepends_recursive(pv: list[str], spdx_path: str, dr_dict: dict[str, list[str]]):
+    rdepends = take_pakage_version(spdx_path)
+    rdepends.remove(pv)
     for spdx, ex_spdxs in dr_dict.items():
         if spdx_path in ex_spdxs:
-            rdepends += take_pakages(spdx)
+            rdepends += take_pakage_version(spdx)
     else:
         return rdepends
 
@@ -210,7 +211,8 @@ def count_replace(dr_dict: dict[str, list[str]]):
     return sum_counter
 
 
-def print_pvlist(pv_list):
+def print_pvlist(pv_list: list[list[str]]):
+    pv_list.sort()
     for pv in pv_list:
         print(" ", pv[0], "(" + pv[1] + ")")
 
@@ -220,8 +222,8 @@ def print_package_info(p_name):
     version = pick_version(spdx_path, p_name)
     spdx_dict = make_spdx_dict()
     dr_dict = make_depend_recursive_dict(spdx_dict)
-    depends = take_depends_recursive(p_name, spdx_path, dr_dict)
-    rdepends = take_rdepends_recursive(p_name, spdx_path, dr_dict)
+    depends = take_depends_recursive([p_name, version], spdx_path, dr_dict)
+    rdepends = take_rdepends_recursive([p_name, version], spdx_path, dr_dict)
     print("Package Name".ljust(17) + ":", p_name)
     print("Package Version".ljust(17) + ":", version)
     print("SPDX File Name".ljust(17) + ":", spdx_path, "\n")
