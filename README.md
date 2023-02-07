@@ -12,16 +12,6 @@
 teplate 1 3 5 -c 22 --both
 ```
 
-
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-pytest -q tests
-```
-
-
 ## Authors
 
 - [@tk-tanab](https://github.com/tk-tanab)
