@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "debiantospdx"
-version = "0.1.10"
+version = "0.1.11"
 description = "This tool generate SPDX files from your Debian system / packages"
 authors = ["tk-tanab <tk-tanab@ist.osaka-u.ac.jp>"]
 readme = "README.md"

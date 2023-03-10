@@ -2,4 +2,4 @@
 # 外部に公開する関数をimport
 
 # pyproject.tomlと合わせる
-__version__ = "0.1.10"
+__version__ = "0.1.11"
