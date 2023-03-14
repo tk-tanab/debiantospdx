@@ -7,11 +7,7 @@ import sys
 import time
 
 from debiantospdx import deb_spdx
-from debiantospdx.search import (
-    print_package_info,
-    print_spdx_files_info,
-    take_spdx_path,
-)
+from debiantospdx.search import print_package_info, take_spdx_path
 
 
 def make_pv_vrp_dict(pv_dict: dict[str, str], vrp_dict: dict[str, list[list[str]]]):
@@ -64,7 +60,7 @@ def add_vrp_dict(vrp_names: str, p_name: str, vrp_dict: dict[str, list[list[str]
             vrp_dict[vrp_name_split[0]] = [[p_name] + vrp_name_split[1:]]
 
 
-def main(package, person, organization, all_analyze, path, search, mode, dep_mode, printinfo) -> None:
+def main(package, person, organization, all_analyze, path, search, mode, dep_mode) -> None:
     time_start = time.perf_counter()
 
     pv_dict: dict[str, str] = {}  # {p_name: version}
@@ -80,9 +76,6 @@ def main(package, person, organization, all_analyze, path, search, mode, dep_mod
     if search is not None:
         # パッケージ情報の出力
         print_package_info(search)
-    elif printinfo:
-        # SPDX file群の情報出力
-        print_spdx_files_info()
     elif all_analyze:
         os.mkdir("ALL")
         os.chdir("ALL")
@@ -157,7 +150,6 @@ def entry():
     group.add_argument("--package", type=str, help="Analyze specified package")
     group.add_argument("--all", action="store_true", help="Analyze all Debian packages")
     group.add_argument("--search", type=str, help="Print package information from SPDX files")
-    group.add_argument("--printinfo", action="store_true", help="Print SPDX files' information")
 
     args = parser.parse_args()
 
@@ -167,9 +159,13 @@ def entry():
         raise Exception("Enter Creator Name: person or organization")
 
     if args.person is not None:
-        args_person = " ".join(args.person) + " (" + args.pe + ")"
+        args_person = " ".join(args.person)
+        if args.pe is not None:
+            args_person += " (" + args.pe + ")"
     if args.organization is not None:
-        args_organization = " ".join(args.organization) + " (" + args.oe + ")"
+        args_organization = " ".join(args.organization)
+        if args.oe is not None:
+            args_organization += " (" + args.oe + ")"
 
     if not (0 <= args.mode <= 3 and 0 <= args.dep_mode <= 3):
         raise ValueError("Undefined mode")
@@ -183,5 +179,4 @@ def entry():
         package=args.package,
         all_analyze=args.all,
         search=args.search,
-        printinfo=args.printinfo,
     )

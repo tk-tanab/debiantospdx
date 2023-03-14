@@ -233,15 +233,3 @@ def print_package_info(p_name):
     print("\n--Reverse Dependency Recursive--")
     print("---------------------------------------------")
     print_pvlist(rdepends)
-
-
-def print_spdx_files_info():
-    spdx_dict = make_spdx_dict()
-    dr_dict = make_depend_recursive_dict(spdx_dict)
-    print("Number of Cycle.spdx files".ljust(50) + ":", count_cycle_spdx())
-    print("Number of Circulation Dependent Occurrences".ljust(50) + ":", count_cycle_depend(dr_dict))
-    print("Total Bytes".ljust(50) + ":", get_spdxs_size())
-    print("Number of SPDX files".ljust(50) + ":", count_spdx())
-    print("Number of Packages".ljust(50) + ":", count_packages())
-    print("Number of Files".ljust(50) + ":", count_files())
-    print("Number of times Replace or Provide was referenced".ljust(50) + ":", count_replace(dr_dict))

@@ -1,5 +1,4 @@
 import hashlib
-import json
 import os
 import re
 import subprocess
@@ -20,7 +19,6 @@ class DebSpdx:
     organization: str
     first_mode: int
     rest_mode: int
-    rp_count: int
     trail_list: list[str]  # [p_name]
     treated_num: list[int] = [0]
     treated_list: list[str] = []
@@ -48,7 +46,6 @@ class DebSpdx:
         self.trail_list = trail_list.copy()
         self.first_mode = first_mode
         self.rest_mode = rest_mode
-        self.rp_count = 0
 
     def init_treated_list(self):
         self.treated_list.clear()
@@ -155,7 +152,6 @@ class DebSpdx:
 
                         if self.check_version(or_list[1:], real_p_list[1:]):
                             real_dp_name = real_p_list[0]
-                            self.rp_count += 1
                             break
                     else:
                         continue
@@ -363,12 +359,5 @@ class DebSpdx:
             else:
                 with open(package_name + ".spdx", mode="w") as f:
                     f.write(spdx_text)
-
-        # 依存関係の参照において置換した回数を保存
-        with open("rp_times.json", mode="r") as f:
-            rp_times: dict[str, int] = json.load(f)
-        rp_times[package_name] = self.rp_count
-        with open("rp_times.json", "w") as f:
-            json.dump(rp_times, f, indent=4)
 
         return mutual_list
