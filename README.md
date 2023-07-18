@@ -39,5 +39,5 @@ packageまたはallを選択した場合は作者名となる個人名または�
 
 ## License
 
-- [Apatch2.0](https://choosealicense.com/licenses/apache-2.0/)
+- [Apache2.0](https://choosealicense.com/licenses/apache-2.0/)
 
